@@ -8,6 +8,7 @@
 const { ccclass, property } = cc._decorator;
 
 import Player from './player'
+import Star from './star'
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -32,23 +33,27 @@ export default class NewClass extends cc.Component {
         this.groundY = this.ground.y + this.ground.height / 2;
 
         // 初始化星星
-        this.spawnNewStat();
+        this.spawnNewStar();
     }
 
-    spawnNewStat() {
+    spawnNewStar() {
         // 使用给定的模板在场景中生成一个新节点
         var newStar = cc.instantiate(this.starPrefab);
         // 将新增的节点添加到 Canvas 节点下面
         this.node.addChild(newStar);
         // 为星星设置一个随机位置
         newStar.setPosition(this.getNewStarPosition());
+
+        // 保存星星组件的引用
+        // 在星星脚本组件上保存 Game 对象的引用
+        newStar.getComponent('star').game = this;
     }
 
     // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
     getNewStarPosition() {
         var randX = 0;
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
-        var randY = this.groundY + Math.random() * this.player.getComponent('player').jumpHeight + 50;
+        var randY = this.groundY + Math.random() * this.player.getComponent('player').jumpHeight - 100;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
         var maxX = this.node.width / 2;
         randX = (Math.random() - 0.5) * 2 * maxX;
