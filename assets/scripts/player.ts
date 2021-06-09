@@ -45,8 +45,20 @@ export default class NewClass extends cc.Component {
 
     }
 
-    update (dt) {
-        console.log(dt);
+    update(dt) {
+        // 根据当前加速度方向每帧更新速度
+        if (this.accLeft) {
+            this.xSpeed -= this.accel * dt;
+        }
+        else if (this.accRight) {
+            this.xSpeed += this.accel * dt;
+        }
+
+        if (Math.abs(this.xSpeed) > this.maxMoveSpeed) {
+            // if speed reach limit, use max speed with current direction
+            this.xSpeed = this.maxMoveSpeed * this.xSpeed / Math.abs(this.xSpeed);
+        }
+        this.node.x += this.xSpeed * dt;
     }
 
     // 跳跃
@@ -71,7 +83,6 @@ export default class NewClass extends cc.Component {
     }
 
     onKeyDown(event) {
-        console.error(event);
         switch (event.keyCode) {
             case cc.macro.KEY.a:
                 this.accLeft = true;
