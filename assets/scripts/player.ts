@@ -31,6 +31,10 @@ export default class NewClass extends cc.Component {
     accRight: Boolean = false
     xSpeed: number = 0;
 
+    // audioInformation
+    @property({ type: cc.AudioClip })
+    jumpAudio: cc.AudioClip = null
+
     // LIFE-CYCLE CALLBACKS:
     onLoad() {
         var jumpAction = this.runJumpAction();
@@ -76,7 +80,8 @@ export default class NewClass extends cc.Component {
         var tween = cc.tween()
             // 按顺序执行动作
             .sequence(squash, stretch, jumpUp, scaleBack, jumpDown)
-        // 添加一个回调函数，在前面的动作都结束时调用我们定义的 playJumpSound() 方法
+            // 添加一个回调函数，在前面的动作都结束时调用我们定义的 playJumpSound() 方法
+            .call(this.playJumpSound, this)
 
         // 不断重复
         return cc.tween().repeatForever(tween);
@@ -90,6 +95,10 @@ export default class NewClass extends cc.Component {
 
     stopMove() {
         this.node.stopAllActions();
+    }
+
+    playJumpSound() {
+        cc.audioEngine.playEffect(this.jumpAudio, false)
     }
 
     onKeyDown(event) {

@@ -33,6 +33,9 @@ export default class NewClass extends cc.Component {
     timer: number = 0;
     starDuration: number = 0;
 
+    @property({ type: cc.AudioClip })
+    scoreAudio: cc.AudioClip = null;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -78,6 +81,9 @@ export default class NewClass extends cc.Component {
         this.score += 1;
         // 更新Label文案
         this.scoreDisplay.string = `Score:${this.score}`
+
+        // 播放音效
+        cc.audioEngine.playEffect(this.scoreAudio, false)
     }
 
     start() {
