@@ -1,0 +1,11 @@
+# *[png.meta]
+# *.meta
+# *mp3.meta
+# *.png.meta
+#IDE
+/library
+/local
+/build
+/temp
+/.idea
+/settings
