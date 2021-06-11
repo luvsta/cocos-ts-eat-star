@@ -61,7 +61,7 @@ export default class NewClass extends cc.Component {
         newStar.getComponent('star').game = this;
 
         // 重新开始计时并设置消失时间区间
-        this.starDuration = 3;
+        this.starDuration = 5;
         this.timer = 0;
     }
 
