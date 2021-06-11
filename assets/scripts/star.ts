@@ -25,14 +25,22 @@ export default class NewClass extends cc.Component {
 
     update(dt) {
         // 每帧判断星星和主角之间的距离是否小于收集距离
-        // if (this.getPlayerDistance() < this.pickRadius) {
-        //     // 调用收集行为
-        //     this.onPicked();
-        //     return;
-        // }
+        if (this.getPlayerDistance() < this.pickRadius) {
+            // debugger
+            // 调用收集行为
+            this.onPicked();
+            return;
+        }
     }
 
     getPlayerDistance() {
+
+        var playerPos = this.game.player.getCenterPos();
+        // 根据两点位置计算两点之间距离
+        var dist = this.node.position.sub(playerPos).mag();
+        return dist;
+
+
         var playerPos = this.game.player.node.getPosition();
         // 根据两点位置计算两点之间距离
         var dist = this.node.position.sub(playerPos).mag();

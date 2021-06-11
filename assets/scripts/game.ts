@@ -31,7 +31,6 @@ export default class NewClass extends cc.Component {
     onLoad() {
         // 获取水平面，后续生成的星星高度不能低于此
         this.groundY = this.ground.y + this.ground.height / 2;
-
         // 初始化星星
         this.spawnNewStar();
     }
@@ -53,7 +52,7 @@ export default class NewClass extends cc.Component {
     getNewStarPosition() {
         var randX = 0;
         // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
-        var randY = this.groundY + Math.random() * this.player.getComponent('player').jumpHeight - 100;
+        var randY = this.groundY + Math.random() * this.player.getComponent('player').jumpHeight + 50;
         // 根据屏幕宽度，随机得到一个星星 x 坐标
         var maxX = this.node.width / 2;
         randX = (Math.random() - 0.5) * 2 * maxX;
