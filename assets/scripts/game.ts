@@ -26,6 +26,13 @@ export default class NewClass extends cc.Component {
     maxStarDuration: number = 0
     minStarDuration: number = 0
 
+    @property(cc.Label)
+    scoreDisplay: cc.Label = null
+
+    score: number = 0;
+    timer: number = 0;
+    starDuration: number = 0;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -33,6 +40,9 @@ export default class NewClass extends cc.Component {
         this.groundY = this.ground.y + this.ground.height / 2;
         // 初始化星星
         this.spawnNewStar();
+
+        // 初始化计分
+        this.score = 0;
     }
 
     spawnNewStar() {
@@ -46,6 +56,10 @@ export default class NewClass extends cc.Component {
         // 保存星星组件的引用
         // 在星星脚本组件上保存 Game 对象的引用
         newStar.getComponent('star').game = this;
+
+        // 重新开始计时并设置消失时间区间
+        this.starDuration = 3;
+        this.timer = 0;
     }
 
     // 根据地平面位置和主角跳跃高度，随机得到一个星星的 y 坐标
@@ -60,9 +74,32 @@ export default class NewClass extends cc.Component {
         return cc.v2(randX, randY);
     }
 
+    gainScore() {
+        this.score += 1;
+        // 更新Label文案
+        this.scoreDisplay.string = `Score:${this.score}`
+    }
+
     start() {
 
     }
 
-    // update (dt) {}
+    update(dt) {
+
+        // 计算每帧周期内是否捡到星星
+        if (this.timer > this.starDuration) {
+            this.gameOver() // 待实现
+            return;
+        }
+
+        this.timer += dt;
+
+    }
+
+    gameOver() {
+        this.player.enabled = false;
+        this.player.stopMove();
+        // this.player.node.stopAllActions(); // 停止所有动作
+        // cc.director.loadScene('main') // 重载游戏实例
+    }
 }

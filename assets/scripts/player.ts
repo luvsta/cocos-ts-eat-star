@@ -82,9 +82,14 @@ export default class NewClass extends cc.Component {
         return cc.tween().repeatForever(tween);
     }
 
-    getCenterPos () {
-        var centerPos = cc.v2(this.node.x, this.node.y + this.node.height/2);
+    getCenterPos() {
+        var centerPos = cc.v2(this.node.x, this.node.y + this.node.height / 2);
         return centerPos;
+    }
+
+
+    stopMove() {
+        this.node.stopAllActions();
     }
 
     onKeyDown(event) {

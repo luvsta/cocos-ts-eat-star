@@ -31,6 +31,10 @@ export default class NewClass extends cc.Component {
             this.onPicked();
             return;
         }
+
+        var opacityRatio = 1 - this.game.timer / this.game.starDuration;
+        var minOpacity = 50;
+        this.node.opacity = minOpacity + Math.floor(opacityRatio * (255 - minOpacity))
     }
 
     getPlayerDistance() {
@@ -50,6 +54,9 @@ export default class NewClass extends cc.Component {
     onPicked() {
         // 当星星被收集时，调用 Game 脚本中的接口，生成一个新的星星
         this.game.spawnNewStar();
+
+        this.game.gainScore();
+
         // 然后销毁当前星星节点
         this.node.destroy();
     }
