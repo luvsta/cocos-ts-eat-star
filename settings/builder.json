@@ -1,0 +1,43 @@
+{
+  "title": "cocos-ts-eat-star",
+  "packageName": "",
+  "startScene": "a668752a-2caa-4f3d-90c3-647da8f7abe5",
+  "excludeScenes": [],
+  "includeSDKBox": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "webOrientation": "auto",
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "mergeStartScene": false,
+  "optimizeHotUpdate": false,
+  "md5Cache": false,
+  "encryptJs": true,
+  "xxteaKey": "de3931e7-ca46-4d",
+  "zipCompressJs": true,
+  "fb-instant-games": {},
+  "android": {
+    "packageName": ""
+  },
+  "ios": {
+    "packageName": ""
+  },
+  "mac": {
+    "packageName": ""
+  },
+  "win32": {},
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "packageName": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "appBundle": false
+}
